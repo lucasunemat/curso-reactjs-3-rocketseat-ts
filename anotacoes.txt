@@ -7,3 +7,12 @@
 5. Configurar o themeprovider no App.tsx
 6. Configurações globais de estilo no global.ts
 7. Criação de pasta pages com a page principal + criação pasta components 
+
+RADIX - COMPONENTES COM ACESSIBILIDADE
+
+* npm install @radix-ui/react-dialog
+* Instala componentes de pop-up, caixas de diálogo, que são trabalhosos de
+  criar com html puro;
+* E eles já vem com acessibilidade implementada
+* Esses componentes são instalados sozinhos, um por um. Para não onerar o setup
+* Ex para instalar o dialog: npm install @radix-ui/react-dialog
