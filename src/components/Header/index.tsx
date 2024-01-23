@@ -8,6 +8,13 @@ import * as Dialog from '@radix-ui/react-dialog'; // Importando tudo que foi exp
  * Mas para evitar de usar um css com biblioteca (styled (Dialog.Trigger``)) vamos usar a prop asChild
  * A prop asChild faz o Dialog.Trigger deixar de atuaar como botão para usar o componente filho (NewTransactionButton) como botão
  * Dialog.Portal basicamente é um portal mesmo, tudo que vc coloca nele pode ser renderizado em qualquer outro lugar da aplicação
+ * O Portal é usado para renderizar o modal em qualquer lugar da aplicação (afinal ele não ta dentro de div nenhuma, so tamo configurando ele aqui pq o botão que ativa ele ta no header)
+ * O Dialog.Overlay é aquele fundo opaco de quando o modal é ativado
+ * O Dialog.Content é o conteudo do modal
+ * Dialog.Title é o titulo do modal, anunciado inclusive em leitores de tela
+ * Dialog.Description pode ser usado para descrição de informações adicionais ( não será usado)
+ * Dialog.Close é o botão de fechar o modal
+ * A parte de acessibilidade vem junto: enter abre o modal, esc fecha o modal, tab navega entre os elementos do modal
  */
 export function Header() {
     return (
@@ -20,7 +27,13 @@ export function Header() {
                     </Dialog.Trigger>
 
                     <Dialog.Portal>
+                        <Dialog.Overlay />
 
+                        <Dialog.Content>
+                            <Dialog.Title>
+                                Nova transação
+                            </Dialog.Title>
+                        </Dialog.Content>
                     </Dialog.Portal>
                 </Dialog.Root>
             </HeaderContent>
