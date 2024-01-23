@@ -11,7 +11,7 @@ export function Summary() {
                     <ArrowCircleUp size={32} color="#00b37e"/>
                 </header>
 
-                <strong>R$ 17.400,00</strong>
+                <strong>R$ 22.000,00</strong>
             </SummaryCard>
 
             <SummaryCard>
@@ -20,7 +20,7 @@ export function Summary() {
                     <ArrowCircleDown size={32} color="#f75a68"/>
                 </header>
 
-                <strong>R$ 10.400,00</strong>
+                <strong>R$ 1.138,00</strong>
             </SummaryCard>
 
             <SummaryCard variant="green">
@@ -29,7 +29,7 @@ export function Summary() {
                     <CurrencyDollar size={32} color="#fff"/>
                 </header>
 
-                <strong>R$ 7.400,00</strong>
+                <strong>R$ 20.862,00</strong>
             </SummaryCard>
         </SummaryContainer>
     )
