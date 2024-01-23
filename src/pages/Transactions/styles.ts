@@ -12,7 +12,7 @@ export const TransactionsTable = styled.table`
     //as duas linhas abaixo são para separar as linhas da tabela - sem separate não funciona
     border-collapse: separate;
     border-spacing: 0 0.5rem;
-    /* margin-top: 1.5rem; */
+    margin-top: 1.5rem;
 
     td {
         padding: 1.25rem 2rem;
