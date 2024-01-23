@@ -3,6 +3,7 @@
 1. Criar o ambiente VITE
 2. Limpar o Vite (assets e arquivos css)
 3. Instalar Styled Components e @types/styled-Components
-4. Criar o tema default.ts e também o arquivo global.ts com config css global da aplicação
+4. Criar o tema default.ts (com o styled.d.ts numa pasta @types) e também o arquivo global.ts com config css global da aplicação
 5. Configurar o themeprovider no App.tsx
 6. Configurações globais de estilo no global.ts
+7. Criação de pasta pages com a page principal + criação pasta components 
