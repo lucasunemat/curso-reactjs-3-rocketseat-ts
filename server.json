@@ -7,6 +7,14 @@
             "category": "venda",
             "price": 14000,
             "createdAt": "2024-01-24T17:53:53.235Z"
+        },
+        {
+            "id": 2,
+            "description": "Burguer do Tião",
+            "type": "outcome",
+            "category": "compra",
+            "price": 40,
+            "createdAt": "2024-01-24T17:53:40.235Z"
         }
     ]
 }

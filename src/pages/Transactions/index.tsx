@@ -1,9 +1,26 @@
+import { useEffect } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm";
 import { PriceHighlight, TransactionContainer, TransactionsTable } from "./styles";
 
 export function Transactions() {
+    //fazendo useEffect vigiar o carregamento da página para fazer requisição ao iniciar a página
+    useEffect(() => {
+        // fetch('http://localhost:3000/Transactions')
+        // .then (response => response.json())
+        // .then (data => console.log(data))
+
+        async function loadTransactions() {
+            const response = await fetch('http://localhost:3000/Transactions')
+            const data = await response.json()
+
+            console.log(data)
+        }
+
+        loadTransactions()
+    }, []);
+
     return (
         <div>
             <Header />

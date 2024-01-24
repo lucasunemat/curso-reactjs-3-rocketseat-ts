@@ -27,5 +27,14 @@ JSON SERVER
 * Para executar o servidor json, use: npx json-server nomeDoSeuArquivo.json
 * No caso, o endpoint http://localhost:3000/Transactions vai servir para requisitar e retornar
   o vetor de Transactions
-* Se precisar especificar a porta que vai executar o server-json:
-  * npx json-server nomeDoSeuArquivo.json -p 3343
+* Se precisar especificar a porta que vai executar o server-json ou dar delay para simulação real (500 milisegundos) :
+  * npx json-server nomeDoSeuArquivo.json -p 3343 -d 500
+* Você pode listar recursos na api:
+  * http://localhost:3000/Transactions/1
+* Pode filtrar ordenando por data:
+  * http://localhost:3000/Transactions?_sort=createdAt
+* Buscar um valor especifico para atributo:
+  * http://localhost:3000/Transactions?id=2
+* Consultas por texto no geral:
+    http://localhost:3000/Transactions?q==Ti (busca não funcionou mas acho que deve ter sido
+    substituida por outro formato)
