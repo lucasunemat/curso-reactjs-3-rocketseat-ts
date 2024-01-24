@@ -1,6 +1,7 @@
 import { HeaderContainer, HeaderContent, NewTransactionButton } from "./styles";
 import logoImg from '../../assets/logo.svg';
 import * as Dialog from '@radix-ui/react-dialog'; // Importando tudo que foi exportado e jogando no objeto chamado Dialog
+import { NewTransactionModal } from "../NewTransactionModal";
 
 /**
  * Basicamente o modal vai ser ativado ao apertar botão, então é lá que vamos usar ele
@@ -25,16 +26,8 @@ export function Header() {
                     <Dialog.Trigger asChild>
                         <NewTransactionButton>Nova transação</NewTransactionButton>
                     </Dialog.Trigger>
-
-                    <Dialog.Portal>
-                        <Dialog.Overlay />
-
-                        <Dialog.Content>
-                            <Dialog.Title>
-                                Nova transação
-                            </Dialog.Title>
-                        </Dialog.Content>
-                    </Dialog.Portal>
+                    
+                    <NewTransactionModal/>
                 </Dialog.Root>
             </HeaderContent>
         </HeaderContainer>
