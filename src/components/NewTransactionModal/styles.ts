@@ -7,6 +7,10 @@ import styled from 'styled-components';
 // Dialog.Content vira base para Content, e assim vai...
 
 //Overlay será nossa tela opaca ao abrir o modal
+
+/**
+ * Os RadioGroups tem css "data-state" com valores checked ou unchecked, que podem ser manipulados aqui
+ */
 export const Overlay = styled(Dialog.Overlay)`
     position: fixed; //mesmo scrollando, vai ficar na posição fixa dele
     width: 100vw;
@@ -107,6 +111,20 @@ export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButt
     //editando o icone
     svg {
         color: ${props => props.variant === 'income' ? props.theme['green-300'] : props.theme['red-300']};
+    }
+
+    &[data-state='unchecked']:hover {
+        background: ${props => props.theme['gray-600']};
+        transition: 0.2s;
+    }
+
+    &[data-state='checked'] {
+        color: ${props => props.theme.white};
+        background: ${props => props.variant === 'income' ? props.theme['green-300'] : props.theme['red-300']};
+
+        svg {
+            color: ${props => props.theme.white};
+        }
     }
 `;
 
