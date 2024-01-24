@@ -16,3 +16,4 @@ RADIX - COMPONENTES COM ACESSIBILIDADE
 * E eles já vem com acessibilidade implementada
 * Esses componentes são instalados sozinhos, um por um. Para não onerar o setup
 * Ex para instalar o dialog: npm install @radix-ui/react-dialog
+* Instalando radio group: npm i @radix-ui/react-radio-group
