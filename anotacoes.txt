@@ -17,3 +17,15 @@ RADIX - COMPONENTES COM ACESSIBILIDADE
 * Esses componentes são instalados sozinhos, um por um. Para não onerar o setup
 * Ex para instalar o dialog: npm install @radix-ui/react-dialog
 * Instalando radio group: npm i @radix-ui/react-radio-group
+
+JSON SERVER
+
+* Simulação de uma API real
+* npm i json-server -D
+* Você cria um arquivo na raiz chamado server.json
+* E cada linha colocada no arquivo é como se fosse uma entidade. Ex: { "Transactions" : [] }
+* Para executar o servidor json, use: npx json-server nomeDoSeuArquivo.json
+* No caso, o endpoint http://localhost:3000/Transactions vai servir para requisitar e retornar
+  o vetor de Transactions
+* Se precisar especificar a porta que vai executar o server-json:
+  * npx json-server nomeDoSeuArquivo.json -p 3343
