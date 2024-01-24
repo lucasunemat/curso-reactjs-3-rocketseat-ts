@@ -15,6 +15,14 @@
             "category": "compra",
             "price": 40,
             "createdAt": "2024-01-24T17:53:40.235Z"
+        },
+        {
+            "id": 3,
+            "description": "Refrigerante",
+            "type": "outcome",
+            "category": "compra",
+            "price": 4,
+            "createdAt": "2024-01-24T17:53:30.235Z"
         }
     ]
 }
