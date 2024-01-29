@@ -51,7 +51,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     // transactions : é a variável que armazena a lista de transações que quero disponibilizar
     // para os outros componentes
     return (
-        //Aqui é o código da linha 22 em uso 
+        //Aqui é o código da linha 22 em uso, eu tô retornando o conteudo da página disponibilizando a var transactions
         <TransactionContext.Provider value={{ transactions }}>
             {children}
         </TransactionContext.Provider>)
