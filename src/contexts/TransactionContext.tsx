@@ -1,3 +1,5 @@
+// Aqui pense: adicionar essa funcionalidade aqui vai ser útil para outros componentes?
+
 import React, { createContext, useEffect, useState } from "react";
 
 // 1. tipagem de uma transaction

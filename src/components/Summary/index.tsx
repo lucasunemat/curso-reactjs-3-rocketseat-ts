@@ -7,7 +7,28 @@ export function Summary() {
     // importando a lista de transações
     const { transactions } = useContext(TransactionContext);
 
-    console.log('Console.log do Summary: ', transactions);
+    //console.log('Console.log do Summary: ', transactions);
+
+    const summary = transactions.reduce(
+        (acc, transaction) => {
+            if (transaction.type === 'income') {
+                acc.income += transaction.price;
+                acc.total += transaction.price;
+            } else {
+                acc.outcome += transaction.price;
+                acc.total -= transaction.price;
+            }
+
+            return acc
+        },
+        {
+            income: 0,
+            outcome: 0,
+            total: 0
+        }
+    );
+
+    console.log(summary);
 
     // veja: tags que vão precisar de mais estilizações viram componentes (div -> SummaryCard) lá no styles.ts
     return (
@@ -18,7 +39,7 @@ export function Summary() {
                     <ArrowCircleUp size={32} color="#00b37e" />
                 </header>
 
-                <strong>R$ 12.000,00</strong>
+                <strong>{summary.income}</strong>
             </SummaryCard>
 
             <SummaryCard>
@@ -27,7 +48,7 @@ export function Summary() {
                     <ArrowCircleDown size={32} color="#f75a68" />
                 </header>
 
-                <strong>R$ 1.090,00</strong>
+                <strong>{summary.outcome}</strong>
             </SummaryCard>
 
             <SummaryCard variant="green">
@@ -36,7 +57,7 @@ export function Summary() {
                     <CurrencyDollar size={32} color="#fff" />
                 </header>
 
-                <strong>R$ 10.910,00</strong>
+                <strong>{summary.total}</strong>
             </SummaryCard>
         </SummaryContainer>
     )
