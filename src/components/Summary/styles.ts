@@ -37,7 +37,7 @@ export const SummaryCard = styled.div<SummaryCardProps>`
     }
 
     // se a prop variant existir e for green, adicione o css abaixo (no caso, fundo verde)
-    ${props => props.variant === 'green' && css `
+    ${props => props.variant === 'green' && css`
         background: ${props.theme["green-500"]}; 
     `}
 `;
