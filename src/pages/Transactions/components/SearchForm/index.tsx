@@ -2,13 +2,44 @@
 
 import { MagnifyingGlass } from "phosphor-react";
 import { SearchFormContainer } from "./styles";
+import { useForm } from "react-hook-form";
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod'
+
+//schema definido via zod
+const searchFormSchema = z.object({
+    query: z.string(),
+})
+
+//criando um tipo que pega automaticamente o que o zod recomenda no schema
+type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 export function SearchForm() {
+
+    // aponto o tipo SearchFormInputs dentro do useForm
+    // o isSubmmiting é um boolean que indica se o formulário está sendo submetido ou não 
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm<SearchFormInputs>({
+        //aponto o schema do zod dentro do zodResolver
+        resolver: zodResolver(searchFormSchema)
+    });
+
+    // aponto o tipo SearchFormInputs para o data
+    async function handleSearchTransactions(data: SearchFormInputs) {
+        // espera 2s para simular requisição a API
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        console.log(data);
+    }
+
     return (
-        <SearchFormContainer>
-            <input type="text" placeholder="Busque por transações" />
-            <button type="submit">
-                <MagnifyingGlass size={20}/>
+        <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
+            <input
+                type="text"
+                placeholder="Busque por transações"
+                {...register('query')}
+            />
+            <button type="submit" disabled={isSubmitting}>
+                <MagnifyingGlass size={20} />
             </button>
         </SearchFormContainer>
     )

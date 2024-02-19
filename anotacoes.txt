@@ -42,3 +42,4 @@ JSON SERVER
 INSTALANDO BIBLIOTECA ZOD PARA VALIDAR FORMULÁRIOS
 
 * npm i react-hook-form zod
+* npm i @hookform/resolvers
