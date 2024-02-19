@@ -56,5 +56,6 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         //Aqui é o código da linha 22 em uso, eu tô retornando o conteudo da página disponibilizando a var transactions
         <TransactionContext.Provider value={{ transactions }}>
             {children}
-        </TransactionContext.Provider>)
+        </TransactionContext.Provider>
+    )
 }
