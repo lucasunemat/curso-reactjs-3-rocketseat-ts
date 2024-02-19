@@ -38,3 +38,7 @@ JSON SERVER
 * Consultas por texto no geral:
     http://localhost:3000/Transactions?q==Ti (busca não funcionou mas acho que deve ter sido
     substituida por outro formato)
+
+INSTALANDO BIBLIOTECA ZOD PARA VALIDAR FORMULÁRIOS
+
+* npm i react-hook-form zod
