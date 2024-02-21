@@ -45,12 +45,15 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         //se eu tiver enviado query...
         if (query) {
             // o 'q' é o '?' na url
+            // esse parâmetro 'q' é suportado pelo json-server ^0.17.1 apenas. Tive que mudar no packtage.json e usar 'npm install'
             url.searchParams.append('q', query);
         }
 
         const response = await fetch(url);
         const data = await response.json();
 
+        // veja que ele usa o setTransactions para atualizar o estado
+        // isso afeta o summary, pois a variável transactions vai ser atualizada e os valores do summary vão mudar
         setTransactions(data);
     }
 
