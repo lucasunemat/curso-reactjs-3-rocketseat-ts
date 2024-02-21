@@ -1,6 +1,7 @@
 // Aqui pense: adicionar essa funcionalidade aqui vai ser útil para outros componentes?
 
 import React, { createContext, useEffect, useState } from "react";
+import { api } from "../lib/axios";
 
 // 1. tipagem de uma transaction
 interface Transaction {
@@ -40,21 +41,32 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     async function fetchTransactions(query?: string) {
-        const url = new URL('http://localhost:3000/transactions');
+        /*
+         * No axios você pode usar a const api exportada 
+         * passar um método get
+         * e depois um objeto contendo os parâmetros (ex: ?) da requisição
+        */
+        const response = await api.get('/transactions', {
+            params: {
+                q: query
+            }
+        })
 
-        //se eu tiver enviado query...
-        if (query) {
-            // o 'q' é o '?' na url
-            // esse parâmetro 'q' é suportado pelo json-server ^0.17.1 apenas. Tive que mudar no packtage.json e usar 'npm install'
-            url.searchParams.append('q', query);
-        }
+        // const url = new URL('http://localhost:3000/transactions');
 
-        const response = await fetch(url);
-        const data = await response.json();
+        // //se eu tiver enviado query...
+        // if (query) {
+        //     // o 'q' é o '?' na url
+        //     // esse parâmetro 'q' é suportado pelo json-server ^0.17.1 apenas. Tive que mudar no packtage.json e usar 'npm install'
+        //     url.searchParams.append('q', query);
+        // }
+
+        // const response = await fetch(url);
+        // const data = await response.json();
 
         // veja que ele usa o setTransactions para atualizar o estado
         // isso afeta o summary, pois a variável transactions vai ser atualizada e os valores do summary vão mudar
-        setTransactions(data);
+        setTransactions(response.data);
     }
 
     //fazendo useEffect vigiar o carregamento da página para fazer requisição ao iniciar a página

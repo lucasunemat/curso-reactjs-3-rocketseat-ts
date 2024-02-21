@@ -43,3 +43,8 @@ INSTALANDO BIBLIOTECA ZOD PARA VALIDAR FORMULÁRIOS
 
 * npm i react-hook-form zod
 * npm i @hookform/resolvers
+
+INSTALANDO AXIOS
+
+* npm i axios
+* Para configurar o axios crie uma pasta 'lib' em src e depois crie arquivo axios.ts
