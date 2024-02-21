@@ -4,6 +4,8 @@ import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
 import * as z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { useContext } from "react";
+import { TransactionContext } from "../../contexts/TransactionContext";
 
 /**
  * Controlled: cada digitação é armazenada e monitorada
@@ -22,11 +24,14 @@ type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 //aqui pegou tudo que é dentro do Dialog.Portal 
 export function NewTransactionModal() {
 
+    const { createTransaction } = useContext(TransactionContext)
+
     const {
         control, //para usar o form controlled para inputs não nativos do html
         register,
         handleSubmit,
-        formState: { isSubmitting }
+        formState: { isSubmitting },
+        reset,
     } = useForm<NewTransactionFormInputs>({
         resolver: zodResolver(newTransactionFormSchema),
         defaultValues: {
@@ -35,8 +40,17 @@ export function NewTransactionModal() {
     })
 
     async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        console.log(data)
+        // await new Promise(resolve => setTimeout(resolve, 2000));
+        const { category, description, price, type} = data;
+
+        await createTransaction({
+            description,
+            price,
+            category,
+            type
+        })
+
+        reset();
     }
 
     return (
