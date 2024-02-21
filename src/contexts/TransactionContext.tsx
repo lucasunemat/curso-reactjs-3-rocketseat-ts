@@ -14,7 +14,8 @@ interface Transaction {
 
 // 2. tipagem do contexto (que será um array de transactions)
 interface TransactionContextType {
-    transactions: Transaction[]
+    transactions: Transaction[];
+    fetchTransactions: (query?: string) => Promise<void>;
 }
 
 // 3. criação do contexto
@@ -38,8 +39,16 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-    async function loadTransactions() {
-        const response = await fetch('http://localhost:3000/Transactions');
+    async function fetchTransactions(query?: string) {
+        const url = new URL('http://localhost:3000/transactions');
+
+        //se eu tiver enviado query...
+        if (query) {
+            // o 'q' é o '?' na url
+            url.searchParams.append('q', query);
+        }
+
+        const response = await fetch(url);
         const data = await response.json();
 
         setTransactions(data);
@@ -47,14 +56,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
     //fazendo useEffect vigiar o carregamento da página para fazer requisição ao iniciar a página
     useEffect(() => {
-        loadTransactions();
+        fetchTransactions();
     }, []);
 
     // transactions : é a variável que armazena a lista de transações que quero disponibilizar
     // para os outros componentes
     return (
         //Aqui é o código da linha 22 em uso, eu tô retornando o conteudo da página disponibilizando a var transactions
-        <TransactionContext.Provider value={{ transactions }}>
+        <TransactionContext.Provider value={{ transactions, fetchTransactions }}>
             {children}
         </TransactionContext.Provider>
     )
