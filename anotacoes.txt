@@ -48,3 +48,11 @@ INSTALANDO AXIOS
 
 * npm i axios
 * Para configurar o axios crie uma pasta 'lib' em src e depois crie arquivo axios.ts
+
+INSTALANDO O USE-CONTEXT-SELECTOR
+
+* npm i use-context-selector scheduler
+* scheduler é outra biblioteca quue a use-context-selector depende
+* para usar, você tem que apagar a importação de createContext do react e importar agora o createContext 
+  da use-context-selector => lá no seu contexto
+  => os componentes que tiverem usando useContext agora você muda para useContextSelector

@@ -4,8 +4,8 @@ import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
 import * as z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import { useContext } from "react";
 import { TransactionContext } from "../../contexts/TransactionContext";
+import { useContextSelector } from "use-context-selector";
 
 /**
  * Controlled: cada digitação é armazenada e monitorada
@@ -24,7 +24,14 @@ type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 //aqui pegou tudo que é dentro do Dialog.Portal 
 export function NewTransactionModal() {
 
-    const { createTransaction } = useContext(TransactionContext)
+    // mesmo se outra info do contexto mudar (ex: transactions), esse componente vai ser renderizado de novo
+    // porque ele está escutando o contexto
+    // para isso estou usando context selector aqui, para monitorar só o createTransaction
+    // assim o modal só renderiza de novo se essa info mudar
+    // feito isso, não precisa mais desestruturar, só deixar const createTransaction;
+    const createTransaction = useContextSelector(TransactionContext, (context) => {
+        return context.createTransaction; //info que quero monitorar
+    })
 
     const {
         control, //para usar o form controlled para inputs não nativos do html

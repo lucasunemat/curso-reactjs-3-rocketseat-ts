@@ -1,7 +1,8 @@
 // Aqui pense: adicionar essa funcionalidade aqui vai ser útil para outros componentes?
 
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api } from "../lib/axios";
+import { createContext } from "use-context-selector";
 
 // Tipagem do input que será passado para a função createTransaction
 // Isso evita a gente ficar dependente do modal para criar novas transações
