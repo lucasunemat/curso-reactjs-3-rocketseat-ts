@@ -56,3 +56,5 @@ INSTALANDO O USE-CONTEXT-SELECTOR
 * para usar, você tem que apagar a importação de createContext do react e importar agora o createContext 
   da use-context-selector => lá no seu contexto
   => os componentes que tiverem usando useContext agora você muda para useContextSelector
+
+** parei na aula de useCallback. Vá para lá.
