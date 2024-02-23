@@ -58,3 +58,30 @@ INSTALANDO O USE-CONTEXT-SELECTOR
   => os componentes que tiverem usando useContext agora você muda para useContextSelector
 
 ** parei na aula de useCallback. Vá para lá.
+
+O QUE ACONTECEU DE VERDADE PARA O NEWTRANSACTION MODAL não funcionar (aula "Aplicando Context Selectors")
+
+* Como eu fiz uma pesquisa, atualizei a lista de Transactions
+* Isso fez com que todo o componente de TransactionsContext (que contem a função createTransaction) renderizasse de novo 
+* O que por sua vez fez a função createTransaction renderizar de novo e o componente NewTransactionModal também
+
+POR QUE UM COMPONENTE RENDERIZA?
+
+* Hooks changed (mudou estado, contexto, reducer);
+* Props changed (mudou propriedades)
+* Parent rerendered (componente pai renderizou novamente)
+
+* Qual o fluxo de renderização?
+1. React recria html da interface do componente na MEMÓRIA
+2. Compara versão do html recriada com a versão anterior
+3. SE mudou algo, ele reescreve o html na TELA
+3.1 Quando maior o HTML, mais lento. nesses casos usamos o memo
+
+* O que o memo faz?
+0. Memo verifica: mudou hooks ou props? (deep comparison, comparação profunda)
+0.1 Comparar com versão anterior hooks e Props
+0.2 Se mudou algo, ele permite nova renderização
+1. 
+2.
+3.
+3.1 seguem

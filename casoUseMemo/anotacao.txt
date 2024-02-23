@@ -1,0 +1,5 @@
+* Basicamente você vai usar o useMemo ali no exemplo para evitar que a variavel seja recriada toda a vez que o 
+* componente Summary() for renderizado novamente (ex: porque o componente pai dele renderizou)
+* Basicamente é uma função arrow + um array de dependências
+* E ele vigia: toda vez que transactions mudar (variável) ele recria o cálculo
+    * Isso é mais eficiente do que renderizar toda vez que o Summary() é recriado

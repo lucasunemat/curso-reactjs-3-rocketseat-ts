@@ -7,6 +7,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TransactionContext } from "../../../../contexts/TransactionContext";
 import { useContextSelector } from "use-context-selector";
+import { memo } from "react";
 
 //schema definido via zod
 const searchFormSchema = z.object({
@@ -16,7 +17,7 @@ const searchFormSchema = z.object({
 //criando um tipo que pega automaticamente o que o zod recomenda no schema
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
-export function SearchForm() {
+function SearchFormComponent() {
 
     const fetchTransactions = useContextSelector(TransactionContext, (context)=> {
         return context.fetchTransactions;   
@@ -49,3 +50,9 @@ export function SearchForm() {
         </SearchFormContainer>
     )
 }
+
+// utilizando memo para evitar re-render desnecessário (caso de lista grande de registros - muito HTML para renderizar)
+// se for fazer teste com react dev tools, vai ver que o componente SearchForm (memo) não vai renderizar de novo
+// porque não houve mudança na lista...não mudou hook ou props
+// não use memo em tudo. Em certas situações pode se tornar mais lento comparar profundamente do que recriar tudo de novo
+export const SearchForm = memo(SearchFormComponent);

@@ -1,6 +1,6 @@
 // Aqui pense: adicionar essa funcionalidade aqui vai ser útil para outros componentes?
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { api } from "../lib/axios";
 import { createContext } from "use-context-selector";
 
@@ -51,7 +51,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-    async function fetchTransactions(query?: string) {
+    const fetchTransactions = useCallback(async (query?: string) => {
         /*
          * No axios você pode usar a const api exportada 
          * passar um método get
@@ -64,30 +64,17 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
                 q: query
             }
         })
-
-        // const url = new URL('http://localhost:3000/transactions');
-
-        // //se eu tiver enviado query...
-        // if (query) {
-        //     // o 'q' é o '?' na url
-        //     // esse parâmetro 'q' é suportado pelo json-server ^0.17.1 apenas. Tive que mudar no packtage.json e usar 'npm install'
-        //     url.searchParams.append('q', query);
-        // }
-
-        // const response = await fetch(url);
-        // const data = await response.json();
-
-        // veja que ele usa o setTransactions para atualizar o estado
-        // isso afeta o summary, pois a variável transactions vai ser atualizada e os valores do summary vão mudar
         setTransactions(response.data);
-    }
+    }, [])
 
     //fazendo useEffect vigiar o carregamento da página para fazer requisição ao iniciar a página
     useEffect(() => {
         fetchTransactions();
-    }, []);
+    }, [fetchTransactions]); //como a fetchTransactions tá sendo criada uma vez só, não vai ter caso de useEffect disparar mais vezes
 
-    async function createTransaction(data: CreateTransactionInput) {
+    // aqui estamos usando useCallback para evitar que a função seja recriada toda vez que o componente for renderizado
+    // no array de dependências do useCallback, eu coloco todas as variáveis externas que são usadas dentro da função
+    const createTransaction = useCallback(async (data: CreateTransactionInput) => {
         const { description, price, category, type } = data;
         const response = await api.post('transactions', {
             description,
@@ -100,7 +87,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         //copiando todas as transações e inserindo a nova primeiro (ordme descrecente)
         setTransactions(state => [response.data, ...state])
 
-    }
+    }, [])
 
     // transactions : é a variável que armazena a lista de transações que quero disponibilizar
     // para os outros componentes
